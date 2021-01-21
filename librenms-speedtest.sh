@@ -2,6 +2,7 @@
 # LibreNMS Speedtest plugin
 
 RRDGraphsLocation=/opt/librenms-speedtest/rrd
+SpeedtestResulstTMP=/opt/librenms-speedtest/tmp
 
         case $1 in (create)
                 # Create the Ping measurement RRD
@@ -26,16 +27,16 @@ RRDGraphsLocation=/opt/librenms-speedtest/rrd
                 DATE=$(/bin/date +%s)
 
                 # Generate speedtest results, store them in a temp file
-                speedtest-cli --simple --share > /tmp/speedtest.results 2>/dev/null
+                speedtest-cli --simple --share > $SpeedtestResulstTMP/speedtest.results 2>/dev/null
 
                 # Get the Ping time
-                PingTime=$(cat /tmp/speedtest.results | grep Ping | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"m" -f1)
+                PingTime=$(cat $SpeedtestResulstTMP/speedtest.results | grep Ping | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"m" -f1)
 
                 # Get the Download speed
-                DownloadSpeed=$(cat /tmp/speedtest.results | grep Download | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"M" -f1)
+                DownloadSpeed=$(cat $SpeedtestResulstTMP/speedtest.results | grep Download | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"M" -f1)
 
                 # Get the Upload speed
-                UploadSpeed=$(cat /tmp/speedtest.results | grep Upload | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"M" -f1)
+                UploadSpeed=$(cat $SpeedtestResulstTMP/speedtest.results | grep Upload | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"M" -f1)
 
                 # Update the RRD graphs
                 rrdtool update $RRDGraphsLocation/speedtest_ping.rrd $DATE:$PingTime
