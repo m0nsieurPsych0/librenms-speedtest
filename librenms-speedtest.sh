@@ -46,7 +46,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
         (graph)
                 # Create the Latency PNG of the last day
                 rrdtool graph $PNGImagesDir/speedtest-latency-day.png -J -a PNG --start "-1day" \
-                --title="Latency during Speedtest" \
+                --title="Last Day" \
                 --vertical-label "ms" \
                 DEF:P=$RRDGraphsDir/speedtest-latency.rrd:LATENCY:AVERAGE \
                 DEF:PMIN=$RRDGraphsDir/speedtest-latency.rrd:LATENCY:MIN \
@@ -71,7 +71,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
 
                 # Create the Latency PNG of the last week
                 rrdtool graph $PNGImagesDir/speedtest-latency-week.png -J -a PNG --start "-1week" \
-                --title="Latency during Speedtest" \
+                --title="Last Week" \
                 --vertical-label "ms" \
                 DEF:P=$RRDGraphsDir/speedtest-latency.rrd:LATENCY:AVERAGE \
                 DEF:PMIN=$RRDGraphsDir/speedtest-latency.rrd:LATENCY:MIN \
@@ -96,7 +96,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
 
                 # Create the Bandwidth PNG of the last day
                 rrdtool graph $PNGImagesDir/speedtest-bandwidth-day.png -J -a PNG --start "-1day" \
-                --title="Speedtest Bandwidth" \
+                --title="Last Day" \
                 --vertical-label "Mbit/s" \
                 DEF:D=$RRDGraphsDir/speedtest-bandwidth.rrd:DOWN:AVERAGE \
                 DEF:DMIN=$RRDGraphsDir/speedtest-bandwidth.rrd:DOWN:MIN \
@@ -135,7 +135,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
 
                 # Create the Bandwidth PNG of the last week
                 rrdtool graph $PNGImagesDir/speedtest-bandwidth-week.png -J -a PNG --start "-1week" \
-                --title="Speedtest Bandwidth" \
+                --title="Last Week" \
                 --vertical-label "Mbit/s" \
                 DEF:D=$RRDGraphsDir/speedtest-bandwidth.rrd:DOWN:AVERAGE \
                 DEF:DMIN=$RRDGraphsDir/speedtest-bandwidth.rrd:DOWN:MIN \
@@ -177,5 +177,6 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 ;;
 
         (*)
-                echo "Invalid option. Nothing to do. Please try again with: create - run - graph;;
+                echo "Invalid option. Nothing to do. Please try again with: create - run - graph"
+                ;;
         esac
