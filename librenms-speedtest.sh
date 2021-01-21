@@ -84,17 +84,29 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 VDEF:Yavg=Y0,AVERAGE \
                 VDEF:Davg=D,AVERAGE \
                 VDEF:Uavg=NegU,AVERAGE \
-                AREA:D#61ab3d:Download \
-                AREA:NegU#3d61ab:Upload \
-                LINE1:Uavg#cc1100 \
-                LINE1:Davg#cc3300:"Avg" \
-                LINE1:Yavg#111111 \
+                VDEF:Uavg2=U,AVERAGE \
+                AREA:D#61ab3d:"Download" \
+                AREA:NegU#3d61ab:"Upload" \
+                LINE1:Uavg#cc1100: \
+                LINE1:Davg#cc3300:"Avg\n" \
+                LINE1:Yavg#111111: \
                 GPRINT:D:LAST:"Last download bandwidth\: %2.1lf Mb/s\n" \
                 GPRINT:U:LAST:"Last upload bandwidth\: %2.1lf Mb/s\n" \
-                GPRINT:Davg:"Avg bandwidth %2.1lf Mb/s" \
+                GPRINT:Davg:"Avg download bandwidth %2.1lf Mb/s\n" \
+                GPRINT:Uavg2:"Avg upload bandwidth %2.1lf Mb/s" \
                 -h 300 -w 650 -y1:2 \
-                --color GRID#dddddd \
-                --color MGRID#aaaaaa > /dev/null 2>&1
+                -c BACK#EEEEEE00 \
+                -c SHADEA#EEEEEE00 \
+                -c SHADEB#EEEEEE00 \
+                -c CANVAS#FFFFFF00 \
+                -c GRID#a5a5a5 \
+                -c MGRID#FF9999 \
+                -c FRAME#5e5e5e \
+                -c ARROW#5e5e5e \
+                -R normal \
+                -c FONT#000000 \
+                --font LEGEND:8:DejaVuSansMono \
+                --font AXIS:7:DejaVuSansMono > /dev/null 2>&1
 
                 # Move PNGs to the LibreNMS plugin location
                 cp $PNGImagesDir/*.png /opt/librenms/html/plugins/Speedtest/image
