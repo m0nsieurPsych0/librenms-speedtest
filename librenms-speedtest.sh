@@ -46,7 +46,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
         (graph)
                 # Create the Latency PNG
                 rrdtool graph $PNGImagesDir/speedtest-latency.png -J -a PNG -s -1day \
-                --title="LATENCY Test" \
+                --title="Latency during Speedtest" \
                 --color CANVAS#000000 \
                 --vertical-label "ms" \
                 DEF:P=$RRDGraphsDir/speedtest-latency.rrd:LATENCY:AVERAGE \
@@ -54,11 +54,21 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 DEF:PMAX=$RRDGraphsDir/speedtest-latency.rrd:LATENCY:MAX \
                 VDEF:Pavg=P,AVERAGE \
                 LINE1:Pavg#cc3300:"Average" \
-                LINE2:P#3d61ab:"LATENCY (ms)\n" \
-                GPRINT:Pavg:"Average LATENCY %2.1lf ms\n" \
+                LINE2:P#3d61ab:"Latency (ms)\n" \
+                GPRINT:Pavg:"Avg Latency %2.1lf ms\n" \
                 -h 250 -w 525 -y1:2 \
-                --color GRID#dddddd \
-                --color MGRID#aaaaaa > /dev/null 2>&1
+                -c BACK#EEEEEE00 \
+                -c SHADEA#EEEEEE00 \
+                -c SHADEB#EEEEEE00 \
+                -c CANVAS#FFFFFF00 \
+                -c GRID#a5a5a5 \
+                -c MGRID#FF9999 \
+                -c FRAME#5e5e5e \
+                -c ARROW#5e5e5e \
+                -R normal \
+                -c FONT#000000 \
+                --font LEGEND:8:DejaVuSansMono \
+                --font AXIS:7:DejaVuSansMono > /dev/null 2>&1
                 ;;
 
         (*)
