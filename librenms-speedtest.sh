@@ -1,7 +1,7 @@
 #!/bin/bash
 # LibreNMS Speedtest plugin
 
-RRDGraphsLocation=/opt/speedtest/rrd
+RRDGraphsLocation=/opt/librenms-speedtest/rrd
 
         case $1 in (create)
                 # Create the Ping measurement RRD
