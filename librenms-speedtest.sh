@@ -47,16 +47,15 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 # Create the Latency PNG
                 rrdtool graph $PNGImagesDir/speedtest-latency.png -J -a PNG -s -1day \
                 --title="Latency during Speedtest" \
-                --color CANVAS#000000 \
                 --vertical-label "ms" \
                 DEF:P=$RRDGraphsDir/speedtest-latency.rrd:LATENCY:AVERAGE \
                 DEF:PMIN=$RRDGraphsDir/speedtest-latency.rrd:LATENCY:MIN \
                 DEF:PMAX=$RRDGraphsDir/speedtest-latency.rrd:LATENCY:MAX \
                 VDEF:Pavg=P,AVERAGE \
-                LINE1:Pavg#cc3300:"Average" \
-                LINE2:P#3d61ab:"Latency (ms)\n" \
-                GPRINT:Pavg:"Avg Latency %2.1lf ms\n" \
-                -h 250 -w 525 -y1:2 \
+                LINE1:Pavg#cc3300:"Avg \n" \
+                LINE2:P#3d61ab:"Last latency (ms)\n" \
+                GPRINT:Pavg:"Avg latency %2.1lf ms\n" \
+                -h 300 -w 650 -y1:2 \
                 -c BACK#EEEEEE00 \
                 -c SHADEA#EEEEEE00 \
                 -c SHADEB#EEEEEE00 \
@@ -69,6 +68,36 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 -c FONT#000000 \
                 --font LEGEND:8:DejaVuSansMono \
                 --font AXIS:7:DejaVuSansMono > /dev/null 2>&1
+
+                # Create the Bandwidth PNG
+                rrdtool graph $PNGImagesDir/speedtest-bandwidth.png -J -a PNG -s -1day \
+                --title="Speedtest Bandwidth" \
+                --vertical-label "Mb/s" \
+                DEF:D=$RRDGraphsDir/speedtest-bandwidth.rrd:DOWN:AVERAGE \
+                DEF:DMIN=$RRDGraphsDir/speedtest-bandwidth.rrd:DOWN:MIN \
+                DEF:DMAX=$RRDGraphsDir/speedtest-bandwidth.rrd:DOWN:MAX \
+                DEF:U=$RRDGraphsDir/speedtest-bandwidth.rrd:UP:AVERAGE \
+                DEF:UMIN=$RRDGraphsDir/speedtest-bandwidth.rrd:UP:MIN \
+                DEF:UMAX=$RRDGraphsDir/speedtest-bandwidth.rrd:UP:MAX \
+                CDEF:Y0=U,0,* \
+                CDEF:NegU=U,-1,* \
+                VDEF:Yavg=Y0,AVERAGE \
+                VDEF:Davg=D,AVERAGE \
+                VDEF:Uavg=NegU,AVERAGE \
+                AREA:D#61ab3d:Download \
+                AREA:NegU#3d61ab:Upload \
+                LINE1:Uavg#cc1100 \
+                LINE1:Davg#cc3300:"Avg" \
+                LINE1:Yavg#111111 \
+                GPRINT:D:LAST:"Last download bandwidth\: %2.1lf Mb/s\n" \
+                GPRINT:U:LAST:"Last upload bandwidth\: %2.1lf Mb/s\n" \
+                GPRINT:Davg:"Avg bandwidth %2.1lf Mb/s" \
+                -h 300 -w 650 -y1:2 \
+                --color GRID#dddddd \
+                --color MGRID#aaaaaa > /dev/null 2>&1
+
+                # Move PNGs to the LibreNMS plugin location
+                cp $PNGImagesDir/*.png /opt/librenms/html/plugins/Speedtest/image
                 ;;
 
         (*)
