@@ -55,7 +55,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 LINE1:Pavg#cc3300:"Avg \n" \
                 LINE2:P#3d61ab:"Last latency (ms)\n" \
                 GPRINT:Pavg:"Avg latency %2.1lf ms\n" \
-                -h 300 -w 650 -y1:2 \
+                -h 500 -w 1000 -y1:2 \
                 -c BACK#EEEEEE00 \
                 -c SHADEA#EEEEEE00 \
                 -c SHADEB#EEEEEE00 \
@@ -80,7 +80,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 LINE1:Pavg#cc3300:"Avg \n" \
                 LINE2:P#3d61ab:"Last latency (ms)\n" \
                 GPRINT:Pavg:"Avg latency %2.1lf ms\n" \
-                -h 300 -w 650 -y1:2 \
+                -h 500 -w 1000 -y1:2 \
                 -c BACK#EEEEEE00 \
                 -c SHADEA#EEEEEE00 \
                 -c SHADEB#EEEEEE00 \
@@ -105,7 +105,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 LINE1:Pavg#cc3300:"Avg \n" \
                 LINE2:P#3d61ab:"Last latency (ms)\n" \
                 GPRINT:Pavg:"Avg latency %2.1lf ms\n" \
-                -h 300 -w 650 -y1:2 \
+                -h 500 -w 1000 -y1:2 \
                 -c BACK#EEEEEE00 \
                 -c SHADEA#EEEEEE00 \
                 -c SHADEB#EEEEEE00 \
@@ -130,7 +130,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 LINE1:Pavg#cc3300:"Avg \n" \
                 LINE2:P#3d61ab:"Last latency (ms)\n" \
                 GPRINT:Pavg:"Avg latency %2.1lf ms\n" \
-                -h 300 -w 650 -y1:2 \
+                -h 500 -w 1000 -y1:2 \
                 -c BACK#EEEEEE00 \
                 -c SHADEA#EEEEEE00 \
                 -c SHADEB#EEEEEE00 \
@@ -169,7 +169,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 GPRINT:U:LAST:"Last upload bandwidth\: %2.1lf Mb/s\n" \
                 GPRINT:Davg:"Avg download bandwidth %2.1lf Mb/s\n" \
                 GPRINT:Uavg2:"Avg upload bandwidth %2.1lf Mb/s" \
-                -h 300 -w 650 \
+                -h 500 -w 1000 \
                 -c BACK#EEEEEE00 \
                 -c SHADEA#EEEEEE00 \
                 -c SHADEB#EEEEEE00 \
@@ -208,7 +208,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 GPRINT:U:LAST:"Last upload bandwidth\: %2.1lf Mb/s\n" \
                 GPRINT:Davg:"Avg download bandwidth %2.1lf Mb/s\n" \
                 GPRINT:Uavg2:"Avg upload bandwidth %2.1lf Mb/s" \
-                -h 300 -w 650 \
+                -h 500 -w 1000 \
                 -c BACK#EEEEEE00 \
                 -c SHADEA#EEEEEE00 \
                 -c SHADEB#EEEEEE00 \
@@ -247,7 +247,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 GPRINT:U:LAST:"Last upload bandwidth\: %2.1lf Mb/s\n" \
                 GPRINT:Davg:"Avg download bandwidth %2.1lf Mb/s\n" \
                 GPRINT:Uavg2:"Avg upload bandwidth %2.1lf Mb/s" \
-                -h 300 -w 650 \
+                -h 500 -w 1000 \
                 -c BACK#EEEEEE00 \
                 -c SHADEA#EEEEEE00 \
                 -c SHADEB#EEEEEE00 \
@@ -286,7 +286,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 GPRINT:U:LAST:"Last upload bandwidth\: %2.1lf Mb/s\n" \
                 GPRINT:Davg:"Avg download bandwidth %2.1lf Mb/s\n" \
                 GPRINT:Uavg2:"Avg upload bandwidth %2.1lf Mb/s" \
-                -h 300 -w 650 \
+                -h 500 -w 1000 \
                 -c BACK#EEEEEE00 \
                 -c SHADEA#EEEEEE00 \
                 -c SHADEB#EEEEEE00 \
