@@ -1,9 +1,15 @@
 #!/bin/bash
-# LibreNMS Speedtest plugin
-RRDGraphsDir=/opt/librenms-speedtest/rrd
-PNGImagesDir=/opt/librenms-speedtest/png
-SpeedtestResultDir=/opt/librenms-speedtest/tmp
+#############################
+# LibreNMS Speedtest plugin #
+#############################
+# Main plugin dir
+SpeedtestPluginDir=/opt/librenms/html/plugins
+# Other data dirs
+RRDGraphsDir=$SpeedtestPluginDir/rrd
+PNGImagesDir=$SpeedtestPluginDir/png
+SpeedtestResultDir=$SpeedtestPluginDir/tmp
 
+# Active script code
 
         case $1 in (create)
                 # Create the Latency measurement RRD
@@ -28,10 +34,10 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 DATE=$(/bin/date +%s)
 
                 # Generate speedtest results, store them in a temp file
-                speedtest-cli --simple --share > $SpeedtestResultDir/speedtest-results 2>/dev/null
+                speedtest --accept-license --accept-gdpr -p no > $SpeedtestResultDir/speedtest-results 2>/dev/null
 
                 # Get the Latency
-                Latency=$(cat $SpeedtestResultDir/speedtest-results | grep Ping | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"m" -f1)
+                Latency=$(cat $SpeedtestResultDir/speedtest-results | grep Latency | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"m" -f1)
 
                 # Get the Download speed
                 DownloadSpeed=$(cat $SpeedtestResultDir/speedtest-results | grep Download | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"M" -f1)
@@ -301,7 +307,7 @@ SpeedtestResultDir=/opt/librenms-speedtest/tmp
                 --font AXIS:7:DejaVuSansMono > /dev/null 2>&1
 
                 # Move PNGs to the LibreNMS plugin location
-                cp $PNGImagesDir/*.png /opt/librenms/html/plugins/Speedtest/image
+                cp $PNGImagesDir/*.png /opt/librenms/html/plugins/Speedtest/png
                 ;;
 
         (*)
