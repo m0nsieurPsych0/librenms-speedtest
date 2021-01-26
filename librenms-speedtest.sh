@@ -3,7 +3,7 @@
 # LibreNMS Speedtest plugin #
 #############################
 # Main plugin dir
-SpeedtestPluginDir=/opt/librenms/html/plugins
+SpeedtestPluginDir=/opt/librenms/html/plugins/Speedtest
 # Other data dirs
 RRDGraphsDir=$SpeedtestPluginDir/rrd
 PNGImagesDir=$SpeedtestPluginDir/png
@@ -305,9 +305,6 @@ SpeedtestResultDir=$SpeedtestPluginDir/tmp
                 -c FONT#000000 \
                 --font LEGEND:8:DejaVuSansMono \
                 --font AXIS:7:DejaVuSansMono > /dev/null 2>&1
-
-                # Move PNGs to the LibreNMS plugin location
-                cp $PNGImagesDir/*.png /opt/librenms/html/plugins/Speedtest/png
                 ;;
 
         (*)
