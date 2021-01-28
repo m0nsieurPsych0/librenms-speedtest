@@ -6,9 +6,8 @@ This is a plugin that enables internet uplink bandwidth graphing in a LibreNMS d
 Installation should be pretty straight forward.<br/><br/>
 Screenshot:<br/>
 <img src="https://gitlab.com/jackgreyhat/librenms-speedtest/-/raw/master/images/dashboard-screenshot.png" width="800" height="400"/>
-<br/>
-## Installation
-### Plugin Prerequisites
+
+## Prerequisites
 - A working LibreNMS installation. :D
 - Shell access to the LibreNMS server.
 - Speedtest CLI by Ookla. To install this, use the following link and instructions:
@@ -26,7 +25,7 @@ Screenshot:<br/>
       This dashboard will not work out of the box with the "speedtest-cli" package. Prefer to install Ookla's package.
       ```
 
-### Plugin Installation
+## Installation
 ```
 NOTE: 
 These instructions assume you are the root user. If you are not, prepend sudo 
@@ -64,4 +63,5 @@ and add:<br/>
 - Go to your LibreNMS web interface, and go to "Overview" -> "Plugins" -> "Plugin Admin"
 - Enable the "Speedtest" plugin.
 - Find the "Speedtest" plugin under "Overview" -> "Plugins" -> "Speedtest"
+- Wait at least one hour (2 speedtest runs, one every 30 mins), for data to be properly populated in your graphs.
 - Profit.
