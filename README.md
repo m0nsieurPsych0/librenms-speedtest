@@ -4,7 +4,6 @@ A Speedtest plugin for LibreNMS, built with RRD and Speedtest CLI by Ookla
 ## Introduction
 This is a plugin that enables internet uplink bandwidth graphing in a LibreNMS dashboard. It uses Ookla servers to perform the speedtest by calling Ookla's Speedtest CLI application. Data is stored in the backend into RRD and is visualized by using a LibreNMS style dashboard.
 Installation should be pretty straight forward.<br/><br/>
-Screenshot:<br/>
 <img src="https://gitlab.com/jackgreyhat/librenms-speedtest/-/raw/master/images/dashboard-screenshot.png" width="800" height="400"/>
 
 ## Prerequisites
@@ -20,7 +19,7 @@ Screenshot:<br/>
 ```
 There is also the "speedtest-cli" package, which is possibly provided by your distribution's repository. 
 This package, however, does not follow the same cli commands as the Ookla's Speedtest CLI package and is 
-built with Python. It is known to under perform in some cases.<br/>
+built with Python. It is known to under perform in some cases.
 This dashboard will not work out of the box with the "speedtest-cli" package. Prefer to install Ookla's package.
 ```
 
@@ -29,7 +28,7 @@ This dashboard will not work out of the box with the "speedtest-cli" package. Pr
 These instructions assume you are the root user. If you are not, prepend sudo 
 to the shell commands or temporarily become a user with root privileges.
 ```
-- Login to your LibreNMS server CLI.
+After logging in to your LibreNMS server CLI:
 - Go to your home dir:<br/>
 `cd ~/`
 - Clone this repository into your home dir:<br/>
