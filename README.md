@@ -66,7 +66,7 @@ and add:<br/>
 ## Roadmap
 - Include more metrics, such as:
     - Jitter during tests
-    - Transfered bandwidth during test
+    - Transfered data during test
     - Packet loss during test
 - Add other speedtest providers, such as:
     - Cloudflare
