@@ -13,18 +13,23 @@ Screenshot:<br/>
 - Shell access to the LibreNMS server.
 - Speedtest CLI by Ookla. To install this, use the following link and instructions:
     - https://www.speedtest.net/apps/cli
-    - Verify you are running Speedtest CLI by Ookla by issuing the following command on your CLI:<br> `speedtest --version`
-      Expected example output: `Speedtest by Ookla 1.0.0.2`
+    - Verify you are running Speedtest CLI by Ookla by issuing the following command on your CLI:<br> 
+      `speedtest --version`<br/>
+      Expected example output:<br/>
+      `Speedtest by Ookla 1.0.0.2`
       ```
-      NOTE:<br/>
-      There is also the "speedtest-cli" package, which is possibly provided by your distribution's repository. This package, however, does not follow the same cli commands as the Ookla's Speedtest CLI package and is built with Python. It is known to under perform in some cases.<br/>
+      NOTE:
+      There is also the "speedtest-cli" package, which is possibly provided by your distribution's repository. 
+      This package, however, does not follow the same cli commands as the Ookla's Speedtest CLI package and is 
+      built with Python. It is known to under perform in some cases.<br/>
       This dashboard will not work out of the box with the "speedtest-cli" package. Prefer to install Ookla's package.
       ```
 
 ### Plugin Installation
 ```
 NOTE: 
-These instructions assume you are the root user. If you are not, prepend sudo to the shell commands or temporarily become a user with root privileges.
+These instructions assume you are the root user. If you are not, prepend sudo 
+to the shell commands or temporarily become a user with root privileges.
 ```
 - Login to your LibreNMS server CLI.
 - Go to your home dir:<br/>
@@ -36,13 +41,21 @@ These instructions assume you are the root user. If you are not, prepend sudo to
 - Copy the LibreNMS speedtest plugin contents into the newly created directory:<br/>
 `cp -r ~/librenms-speedtest/. /opt/librenms/html/plugins/Speedtest`
 - Ensure correct ownership and permissions on the Speedtest plugin directory and files:<br/>
-`chown -R librenms:librenms /opt/librenms/html/plugins/Speedtest`
-`chmod -R --reference=/opt/librenms/html/plugins/Test /opt/librenms/html/plugins/Speedtest`
-`chmod +x /opt/librenms/html/plugins/Speedtest/librenms-speedtest.sh`
+`chown -R librenms:librenms /opt/librenms/html/plugins/Speedtest`<br/>
+`chmod -R --reference=/opt/librenms/html/plugins/Test /opt/librenms/html/plugins/Speedtest`<br/>
+`chmod +x /opt/librenms/html/plugins/Speedtest/librenms-speedtest.sh`<br/>
 - Switch to the librenms user:<br/>
 `su - librenms`
-- Accept the speedtest EULA and GDPR notice (if applicable) and run an initial speedtest:
+- Accept the speedtest EULA and GDPR notice (if applicable) and run an initial speedtest:<br/>
 `speedtest --accept-license --accept-gdpr`
-- Go to the Speedtest plugins directory:
+- Go to the Speedtest plugins directory:<br/>
 `cd /opt/librenms/html/plugins/Speedtest/`
-
+- Create the RRD files:<br/>
+`./librenms-speedtest.sh create`
+- Test and run the speedtest script:<br/>
+`./librenms-speedtest.sh run`
+- Output the speedtest results into PNG files:<br/>
+`./librenms-speedtest.sh graph`
+- Go to your LibreNMS web interface, and go to "Overview" -> "Plugins" -> "Plugin Admin"
+- Enable the "Speedtest" plugin.
+- Find the "Speedtest" plugin under "Overview" -> "Plugins" -> "Speedtest"
