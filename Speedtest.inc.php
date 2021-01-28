@@ -3,13 +3,13 @@
 <body>
     <div class="panel panel-default">
         <div class="panel-body ">
-            <img src="plugins/Speedtest/logos/speedtest-logo.png" title="Speedtest Logo" class="device-icon-header pull-left" style="max-height:25px;height:100%;margin-top:8px">
+            <img src="plugins/Speedtest/images/speedtest-logo.png" title="Speedtest Logo" class="device-icon-header pull-left" style="max-height:25px;height:100%;margin-top:8px">
             <div class="pull-left" style="margin-top: 5px;">
                 <span style="font-size: 12px;font-weight: bold">Last used Speedtest server:</span><br />
                 <span style="font-size: 12px;"><?php require_once("plugins/Speedtest/tmp/speedtest-server");?></span>
             </div>
             <div class="pull-right">
-            <img src="plugins/Speedtest/logos/ookla-logo.png" title="Ookla Logo" style="max-height: 50px">
+            <img src="plugins/Speedtest/images/ookla-logo.png" title="Ookla Logo" style="max-height: 50px">
             </div>
         </div>
     </div>
