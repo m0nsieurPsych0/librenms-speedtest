@@ -17,6 +17,7 @@ Screenshot:<br/>
       `speedtest --version`<br/>
       Expected example output:<br/>
       `Speedtest by Ookla 1.0.0.2`
+      <br/>
       ```
       NOTE:
       There is also the "speedtest-cli" package, which is possibly provided by your distribution's repository. 
@@ -42,8 +43,12 @@ to the shell commands or temporarily become a user with root privileges.
 `cp -r ~/librenms-speedtest/. /opt/librenms/html/plugins/Speedtest`
 - Ensure correct ownership and permissions on the Speedtest plugin directory and files:<br/>
 `chown -R librenms:librenms /opt/librenms/html/plugins/Speedtest`<br/>
-`chmod -R --reference=/opt/librenms/html/plugins/Test /opt/librenms/html/plugins/Speedtest`<br/>
+`chmod -R --reference=/opt/librenms/html/plugins /opt/librenms/html/plugins/Speedtest`<br/>
 `chmod +x /opt/librenms/html/plugins/Speedtest/librenms-speedtest.sh`<br/>
+- Create a cron job to run the speedtest periodically. Edit the following file:<br/>
+`vi /etc/cron.d/librenms`<br/>
+and add:<br/>
+`30   *    * * *   librenms    /opt/librenms/html/plugins/Speedtest/librenms-speedtest.sh run && /opt/librenms/html/plugins/Speedtest/librenms-speedtest.sh graph`
 - Switch to the librenms user:<br/>
 `su - librenms`
 - Accept the speedtest EULA and GDPR notice (if applicable) and run an initial speedtest:<br/>
@@ -59,3 +64,4 @@ to the shell commands or temporarily become a user with root privileges.
 - Go to your LibreNMS web interface, and go to "Overview" -> "Plugins" -> "Plugin Admin"
 - Enable the "Speedtest" plugin.
 - Find the "Speedtest" plugin under "Overview" -> "Plugins" -> "Speedtest"
+- Profit.
