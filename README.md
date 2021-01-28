@@ -15,9 +15,17 @@ Screenshot:<br/>
     - https://www.speedtest.net/apps/cli
     - Verify you are running Speedtest CLI by Ookla by issuing the following command on your CLI:<br/>
         `speedtest --version` <br/>
-      Expected output: </br>
-        `Speedtest by Ookla ...` <br/>
-      Note: There is also the "speedtest-cli" package, which is possibly provided by your distribution's repository. This package, however, does not follow the same cli commands as the Ookla's Speedtest CLI package and is built with Python. It is known to under perform in some cases. This dashboard will not work out of the box with the "speedtest-cli" package. Prefer to install Ookla's package.
+      Expected example output: <br/>
+        ```
+        Speedtest by Ookla 1.0.0.2 (5ae238b) Linux/x86_64-linux-musl 5.4.0-64-generic x86_64
+        
+        The official command line client for testing the speed and performance
+        of your internet connection.
+
+        ```
+      Note:<br/>
+      There is also the "speedtest-cli" package, which is possibly provided by your distribution's repository. This package, however, does not follow the same cli commands as the Ookla's Speedtest CLI package and is built with Python. It is known to under perform in some cases.<br/>
+      This dashboard will not work out of the box with the "speedtest-cli" package. Prefer to install Ookla's package.
 
 
 
