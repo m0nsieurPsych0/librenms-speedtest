@@ -17,13 +17,13 @@ Screenshot:<br/>
       Expected example output:<br/>
       `Speedtest by Ookla 1.0.0.2`
       <br/>
-      ```
-      NOTE:
-      There is also the "speedtest-cli" package, which is possibly provided by your distribution's repository. 
-      This package, however, does not follow the same cli commands as the Ookla's Speedtest CLI package and is 
-      built with Python. It is known to under perform in some cases.<br/>
-      This dashboard will not work out of the box with the "speedtest-cli" package. Prefer to install Ookla's package.
-      ```
+```
+NOTE:
+There is also the "speedtest-cli" package, which is possibly provided by your distribution's repository. 
+This package, however, does not follow the same cli commands as the Ookla's Speedtest CLI package and is 
+built with Python. It is known to under perform in some cases.<br/>
+This dashboard will not work out of the box with the "speedtest-cli" package. Prefer to install Ookla's package.
+```
 
 ## Installation
 ```
