@@ -14,9 +14,9 @@ Screenshot:<br/>
 - Speedtest CLI by Ookla. To install this, use the following link and instructions:
     - https://www.speedtest.net/apps/cli
     - Verify you are running Speedtest CLI by Ookla by issuing the following command on your CLI:<br/>
-        > speedtest --version
+        `speedtest --version` <br/>
       Expected output: </br>
-        > Speedtest by Ookla ...
+        `Speedtest by Ookla ...` <br/>
       Note: There is also the "speedtest-cli" package, which is possibly provided by your distribution's repository. This package, however, does not follow the same cli commands as the Ookla's Speedtest CLI package and is built with Python. It is known to under perform in some cases. This dashboard will not work out of the box with the "speedtest-cli" package. Prefer to install Ookla's package.
 
 
