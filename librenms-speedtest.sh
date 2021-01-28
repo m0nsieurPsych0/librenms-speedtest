@@ -37,14 +37,16 @@ SpeedtestResultDir=$SpeedtestPluginDir/tmp
                 speedtest --accept-license --accept-gdpr -p no > $SpeedtestResultDir/speedtest-results 2>/dev/null
 
                 # Get the Latency
-                Latency=$(cat $SpeedtestResultDir/speedtest-results | grep Latency | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"m" -f1)
+                Latency=$(cat $SpeedtestResultDir/speedtest-results | grep Latency | sed 's/.*Latency:\s*\([0-9]*.[0-9]*\).*/\1/')
 
                 # Get the Download speed
-                DownloadSpeed=$(cat $SpeedtestResultDir/speedtest-results | grep Download | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"M" -f1)
+                DownloadSpeed=$(cat $SpeedtestResultDir/speedtest-results | grep Download | sed 's/.*Download:\s*\([0-9]*.[0-9]*\).*/\1/')
 
                 # Get the Upload speed
-                UploadSpeed=$(cat $SpeedtestResultDir/speedtest-results | grep Upload | sed -r 's/\s+//g'| cut -d":" -f2 | cut -d"M" -f1)
+                UploadSpeed=$(cat $SpeedtestResultDir/speedtest-results | grep Upload | sed 's/.*Upload:\s*\([0-9]*.[0-9]*\).*/\1/')
 
+                # Get the server that was used, dump it into a file
+                cat $SpeedtestResultDir/speedtest-results | grep Server | sed 's/.*Server:\s*\(.*\)/\1/' > $SpeedtestResultDir/speedtest-server
                 # Update the RRD graphs
                 rrdtool update $RRDGraphsDir/speedtest-latency.rrd $DATE:$Latency
                 rrdtool update $RRDGraphsDir/speedtest-bandwidth.rrd $DATE:$DownloadSpeed:$UploadSpeed
