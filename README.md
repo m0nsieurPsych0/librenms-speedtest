@@ -62,3 +62,13 @@ and add:<br/>
 - Find the "Speedtest" plugin under "Overview" -> "Plugins" -> "Speedtest"
 - Wait at least one hour (2 speedtest runs, one every 30 mins), for data to be properly populated in your graphs.
 - Profit.
+
+## Roadmap
+- Include more metrics, such as:
+    - Jitter during tests
+    - Transfered bandwidth during test
+    - Packet loss during test
+- Add other speedtest providers, such as:
+    - Cloudflare
+    - Fast.com
+    - ...
