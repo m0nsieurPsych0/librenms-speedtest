@@ -47,6 +47,7 @@ SpeedtestResultDir=$SpeedtestPluginDir/tmp
 
                 # Get the server that was used, dump it into a file
                 cat $SpeedtestResultDir/speedtest-results | grep Server | sed 's/.*Server:\s*\(.*\)/\1/' > $SpeedtestResultDir/speedtest-server
+                
                 # Update the RRD graphs
                 rrdtool update $RRDGraphsDir/speedtest-latency.rrd $DATE:$Latency
                 rrdtool update $RRDGraphsDir/speedtest-bandwidth.rrd $DATE:$DownloadSpeed:$UploadSpeed

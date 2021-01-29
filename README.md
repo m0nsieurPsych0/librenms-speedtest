@@ -63,6 +63,18 @@ and add:<br/>
 - Wait at least one hour (2 speedtest runs, one every 30 mins), for data to be properly populated in your graphs.
 - Profit.
 
+## FAQs
+Most of the below FAQs are related to how the speedtest command can be adjusted. All of these commands or adjustments must be made to the speedtest command on line 37 in the librenms-speedtest.sh script. In the future, I will make it easier to adjust settings.
+- How can I select a speedtest server manually?
+Use `speedtest -L` to find the nearest speedtest servers, note the first column, this is the speedtest server id.
+Adjust the speedtest command on line 37 to include the server id with `-s`, so it looks like this:
+
+$ speedtest --accept-license --accept-gdpr -p no -s 1234 > $SpeedtestResultDir/speedtest-results 2>/dev/null
+
+
+
+
+
 ## Roadmap
 - Include more metrics, such as:
     - Jitter during tests
