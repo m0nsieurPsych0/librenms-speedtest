@@ -4,7 +4,7 @@ A Speedtest plugin for LibreNMS, built with RRD and Speedtest CLI by Ookla
 ## Introduction
 This is a plugin that enables internet uplink bandwidth graphing in a LibreNMS dashboard. It uses Ookla servers to perform the speedtest by calling Ookla's Speedtest CLI application. Data is stored in the backend into RRD and is visualized by using a LibreNMS style dashboard.
 Installation should be pretty straight forward.<br/><br/>
-<img src="https://gitlab.com/jackgreyhat/librenms-speedtest/-/raw/master/images/dashboard-screenshot.png" height="400"/>
+<img src="https://gitlab.com/jackgreyhat/librenms-speedtest/-/raw/master/images/dashboard-screenshot.png" width="50%" height="50%"/>
 
 ## Prerequisites
 - A working LibreNMS installation. :D
@@ -65,15 +65,10 @@ and add:<br/>
 
 ## FAQs
 Most of the below FAQs are related to how the speedtest command can be adjusted. All of these commands or adjustments must be made to the speedtest command on line 37 in the librenms-speedtest.sh script. In the future, I will make it easier to adjust settings.
-- How can I select a speedtest server manually?
-Use `speedtest -L` to find the nearest speedtest servers, note the first column, this is the speedtest server id.
-Adjust the speedtest command on line 37 to include the server id with `-s`, so it looks like this:
-
-$ speedtest --accept-license --accept-gdpr -p no -s 1234 > $SpeedtestResultDir/speedtest-results 2>/dev/null
-
-
-
-
+- How can I select a speedtest server manually?<br/>
+Use `speedtest -L` to find the nearest speedtest servers, note the first column, this is the speedtest server id.<br/>
+Adjust the speedtest command on line 37 to include the server id with the `-s` parameter, so it looks like this:<br/>
+`speedtest --accept-license --accept-gdpr -p no -s 1234 > $SpeedtestResultDir/speedtest-results 2>/dev/null`
 
 ## Roadmap
 - Include more metrics, such as:
