@@ -30,24 +30,52 @@ SpeedtestResultDir=$SpeedtestPluginDir/tmp
                 RRA:AVERAGE:0.5:144:1460
                 ;;
         (run)
+                
+                # Init variables
+		Latency=""
+                DownloadSpeed=""
+                UploadSpeed=""
+		Server=""
+		PreferedTried=false
+                # Bell server list
+		# Longueuil(Bell Canada), Boucherville(Bell Canada),  Montreal(Bell Mobility), Laval(Bell Canada),  Dartmouth, NS (Bell Mobility) (id: 17393)
+		ServerList=("52030" "52028" "16754" "17567" "17393")
+
                 # Get the date of the moment we start the test, in epoch format
                 DATE=$(/bin/date +%s)
 
-                # Generate speedtest results, store them in a temp file
-                speedtest --accept-license --accept-gdpr -p no > $SpeedtestResultDir/speedtest-results 2>/dev/null
+                # Init the files
+		echo "" > $SpeedtestResultDir/speedtest-results
+		echo "" > $SpeedtestResultDir/speedtest-server
+		
 
-                # Get the Latency
-                Latency=$(cat $SpeedtestResultDir/speedtest-results | grep Latency | sed 's/.*Latency:\s*\([0-9]*.[0-9]*\).*/\1/')
+                # Loop until there is a result that is not empty and that we get data for each variables
+		while [ ! -n "$Latency" -o ! -n "$DownloadSpeed" -o ! -n "$UploadSpeed" -o ! -n "$Server" ]
+		do
+                        # Try a specific server first to reduce the variability in the results
+			if [ "$PreferedTried" = "false" ]; then
+				PreferedTried=true
+				speedtest --accept-license --accept-gdpr -p no -s ${ServerList[3]} > $SpeedtestResultDir/speedtest-results 2>/dev/null
+			else
+				#If prefered not available, use one of three servers from Bell randomly chosen
+				speedtest --accept-license --accept-gdpr -p no -s ${ServerList[`expr $(od -N 4 -An -t u4 /dev/urandom) % 3`]} > $SpeedtestResultDir/speedtest-results 2>/dev/null
+			fi
+			# Get best bandwidth speed
+			DownloadSpeed=$(cat $SpeedtestResultDir/speedtest-results | grep Download | sed 's/.*Download:\s*\([0-9]*.[0-9]*\).*/\1/')
+			UploadSpeed=$(cat $SpeedtestResultDir/speedtest-results | grep Upload | sed 's/.*Upload:\s*\([0-9]*.[0-9]*\).*/\1/')
+			Server=$(cat $SpeedtestResultDir/speedtest-results | grep Server | sed 's/.*Server:\s*\(.*\)/\1/')
+                        echo "BANDWIDTH: "$Server " | "> $SpeedtestResultDir/speedtest-server
 
-                # Get the Download speed
-                DownloadSpeed=$(cat $SpeedtestResultDir/speedtest-results | grep Download | sed 's/.*Download:\s*\([0-9]*.[0-9]*\).*/\1/')
+			#Get best latency using the speedtest defined closest server
+			speedtest --accept-license --accept-gdpr -p no > $SpeedtestResultDir/speedtest-results 2>/dev/null
+			Latency=$(cat $SpeedtestResultDir/speedtest-results | grep Latency | sed 's/.*Latency:\s*\([0-9]*.[0-9]*\).*/\1/')
+			Server=$(cat $SpeedtestResultDir/speedtest-results | grep Server | sed 's/.*Server:\s*\(.*\)/\1/')
+			echo "LATENCY: "$Server >> $SpeedtestResultDir/speedtest-server
 
-                # Get the Upload speed
-                UploadSpeed=$(cat $SpeedtestResultDir/speedtest-results | grep Upload | sed 's/.*Upload:\s*\([0-9]*.[0-9]*\).*/\1/')
+                        # Prevent throttling from Speedtest
+			sleep 1
+		done
 
-                # Get the server that was used, dump it into a file
-                cat $SpeedtestResultDir/speedtest-results | grep Server | sed 's/.*Server:\s*\(.*\)/\1/' > $SpeedtestResultDir/speedtest-server
-                
                 # Update the RRD graphs
                 rrdtool update $RRDGraphsDir/speedtest-latency.rrd $DATE:$Latency
                 rrdtool update $RRDGraphsDir/speedtest-bandwidth.rrd $DATE:$DownloadSpeed:$UploadSpeed
@@ -313,4 +341,4 @@ SpeedtestResultDir=$SpeedtestPluginDir/tmp
         (*)
                 echo "Invalid option. Nothing to do. Please try again with: create - run - graph"
                 ;;
-        esac
+     
