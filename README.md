@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # LibreNMS Speedtest
 A Speedtest plugin for LibreNMS, built with RRD and Speedtest CLI by Ookla
 
@@ -79,3 +80,7 @@ Adjust the speedtest command on line 37 to include the server id with the `-s` p
     - Cloudflare
     - Fast.com
     - ...
+=======
+# librenms-speedtest
+Forked from this project https://gitlab.com/jackgreyhat/librenms-speedtest
+>>>>>>> Initial commit
